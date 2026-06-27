@@ -145,6 +145,49 @@
       text-align: left;
       font-size: 15px;
     }
+    .report-section {
+      margin-top: 16px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: left;
+    }
+    .report-section h3 {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: 15px;
+    }
+    .report-section p {
+      margin: 0;
+      color: #e5e8ee;
+      line-height: 1.75;
+      font-size: 14px;
+    }
+    .quote-card {
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(214, 173, 72, 0.1);
+      color: #f2d47e;
+      line-height: 1.65;
+      font-size: 15px;
+      font-weight: 800;
+      text-align: left;
+    }
+    .mini-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .mini-grid div {
+      padding: 12px;
+      border-radius: 12px;
+      background: #11151b;
+      color: #d5d9df;
+      line-height: 1.55;
+      font-size: 14px;
+    }
     .section-title {
       margin: 24px 0 10px;
       color: var(--gold);
@@ -215,6 +258,25 @@
       <div class="score" id="score"></div>
       <div class="score-label">创业适配指数</div>
       <div class="summary" id="summary"></div>
+      <div class="quote-card" id="quote"></div>
+
+      <div class="report-section">
+        <h3>一、你真正想离开的不是工作本身</h3>
+        <p id="motivation"></p>
+      </div>
+
+      <div class="report-section">
+        <h3>二、更适合你的开始方式</h3>
+        <p id="path"></p>
+      </div>
+
+      <div class="report-section">
+        <h3>三、你最容易踩的坑</h3>
+        <p id="risk"></p>
+      </div>
+
+      <div class="section-title">你的 30 天行动建议</div>
+      <div class="mini-grid" id="actions"></div>
 
       <div class="section-title">你的关键提醒</div>
       <div class="list" id="advice"></div>
@@ -228,26 +290,46 @@
         A: {
           name: "机会捕手型",
           tagline: "你不是不稳定，你只是太早看见了机会。",
-          summary: "你对机会、项目和自主性比较敏感，适合从低成本副业开始验证，不适合一上来重资产创业。",
-          advice: ["先做一个 7 天能完成的小项目。", "不要一开始囤货、租房或重投入。", "用成交和反馈判断方向，而不是只靠兴奋感。"]
+          summary: "你的答案显示，你对机会、项目和自主性非常敏感。你不是单纯讨厌上班，而是很难长期忍受“只能执行、不能验证自己判断”的状态。你适合创业，但更适合轻启动、快验证，而不是一上来就把全部生活押进去。",
+          quote: "你不是不稳定，你是需要一个能让你快速试错、快速看见反馈的战场。",
+          motivation: "你真正想离开的，是被安排、被消耗、看不到成长回报的状态。只要一个项目能让你感到“我做的动作会带来真实反馈”，你的行动力会明显变强。",
+          path: "最适合你的不是直接辞职，而是先做一个低成本副业模型：内容、咨询、资料包、测试链接、小服务都可以。第一阶段只验证三件事：有没有人感兴趣、有没有人愿意付费、你能不能连续做 14 天。",
+          risk: "你最大的风险是兴奋来得快，投入也容易太快。如果一开始就囤货、买课、租场地、重做品牌，很容易把试错变成负担。你需要用小成本换反馈，而不是用大投入证明决心。",
+          actions: ["第 1 周：只选一个小方向，不再同时研究十个赛道。", "第 2 周：做出一个最小产品，比如一篇笔记、一个表单、一个 9.9 元小服务。", "第 3 周：找 20 个真实用户反馈，不用猜需求。", "第 4 周：只根据成交和咨询来决定是否加码。"],
+          advice: ["适合先副业验证，不建议立刻裸辞。", "不要把热情当商业模式，要看真实反馈。", "你需要设置止损线：时间、预算、情绪都要有上限。", "如果连续 30 天没人问、没人买，就先改选题和表达。"]
         },
         B: {
           name: "稳定修复型",
           tagline: "你不是不想改变，你只是需要先恢复状态。",
-          summary: "你现在更需要恢复能量、积累现金流和建立节奏。与其马上创业，不如先用可控方式重新拿回主动权。",
-          advice: ["先保住现金流，再谈创业节奏。", "给自己设一个每周 3 小时的副业窗口。", "不要把疲惫误判成长期方向。"]
+          summary: "你的答案显示，你现在的创业念头里，有一部分来自疲惫、压抑和长期没有掌控感。你并不是不能创业，但现在最重要的不是马上冲出去，而是先把能量、现金流和生活节奏修回来。",
+          quote: "你不是没有野心，你只是不能在最累的时候做最大的决定。",
+          motivation: "你想离开的，可能不是这份工作，而是长期透支后那种“每天都在撑”的状态。人在很累的时候，会把任何远处的东西都看成出口，但真正的出口需要可持续。",
+          path: "最适合你的方式，是保住主业现金流，同时开一个固定的小窗口做副业。比如每周 2-3 次、每次 1 小时，只做一个轻任务：写一篇内容、整理一个资料、测试一个需求。先恢复主动感，再决定要不要加大。",
+          risk: "你最大的风险是把疲惫误判成方向，把逃离误判成创业。如果没有先恢复状态，创业很可能变成另一份更焦虑、更没有边界的工作。",
+          actions: ["第 1 周：不要做辞职决定，先记录自己最消耗的 3 个来源。", "第 2 周：固定每周 3 小时副业时间，不追求立刻赚钱。", "第 3 周：只做一个可以复用的小成果，比如模板、清单、笔记。", "第 4 周：用你的体力和心态变化，判断是否适合继续加码。"],
+          advice: ["先保现金流，再谈创业节奏。", "你适合慢启动，不适合突然切断退路。", "不要用创业惩罚现在的自己。", "当你恢复精力后，判断会比现在准确很多。"]
         },
         C: {
           name: "资源突围型",
           tagline: "你不是没能力，你只是被当前环境压住了。",
-          summary: "你适合做有资源整合、内容表达、项目协作属性的副业或轻创业，但要避免孤军奋战。",
-          advice: ["先盘点你能调动的人、技能和渠道。", "找一个能合作的小项目，不要闭门硬做。", "你适合用关系和内容放大价值。"]
+          summary: "你的答案显示，你不缺想法，也不缺观察机会的能力。你更适合做资源整合型、内容表达型、项目协作型的轻创业，而不是一个人闷头从零硬扛所有细节。",
+          quote: "你真正的优势不是单点苦干，而是看见机会、连接资源、把人和事组织起来。",
+          motivation: "你想离开当前状态，是因为你觉得自己的能力没有被放大。你可能明明看得见问题，也知道哪里有机会，但在原来的环境里只能按流程走，不能真正发挥判断力。",
+          path: "最适合你的开始方式，是从你已有资源里找切口：你认识的人、懂的行业、擅长表达的内容、能帮别人解决的小问题。先做可以借力的项目，不要一开始就把自己放进孤军奋战的位置。",
+          risk: "你最大的风险是想得太大、铺得太开，最后每件事都只做了一半。你需要把资源优势落到一个具体成交场景里，比如帮谁、解决什么、对方为什么现在愿意付费。",
+          actions: ["第 1 周：列出你能调动的 10 个资源，包括人、经验、渠道、技能。", "第 2 周：选一个你最容易接触到的人群，写清他们的一个痛点。", "第 3 周：做一个可展示的小方案，先给身边 5 个人看。", "第 4 周：找一个可合作的人或渠道，不要完全闭门造车。"],
+          advice: ["你适合轻创业和协作型项目。", "不要只做想法收藏，要把想法变成一个可购买的东西。", "你的第一单可能来自熟人、社群或内容，而不是陌生流量。", "先收窄人群，再扩大项目。"]
         },
         D: {
           name: "情绪逃离型",
           tagline: "你不是适合创业，你可能只是太想逃离了。",
-          summary: "你当前的创业冲动更多来自消耗和焦虑。先修复状态、减少错误决策，比马上开始更重要。",
-          advice: ["不要在最累的时候做裸辞决定。", "先把睡眠、节奏和边界恢复回来。", "把想逃离的部分写清楚，再决定要不要创业。"]
+          summary: "你的答案显示，你现在的创业冲动里，情绪逃离的成分比较高。你不是没有能力，也不是不能改变，但现在不适合马上做高风险决定。先把自己从消耗里拉出来，会比立刻创业更重要。",
+          quote: "你现在最需要的不是一个新赛道，而是先确认自己不是在用创业逃离痛苦。",
+          motivation: "你真正想离开的，可能是压力、否定、疲惫、失控感，而不是工作这件事本身。当一个人长期被消耗时，会很容易把“换一种生活”想象成答案，但答案需要在状态稳定时再判断。",
+          path: "最适合你的不是马上创业，而是先做低压力的自我恢复和轻测试。可以先用内容、记录、学习、咨询小单来恢复掌控感，但不建议立刻辞职、借钱、囤货或签长期投入。",
+          risk: "你最大的风险是为了摆脱焦虑而做决定，结果进入一个更焦虑的环境。创业没有老板，但会有客户、收入、交付、售后和不确定性。如果没有准备好边界，它可能比上班更累。",
+          actions: ["第 1 周：先不要辞职，写下你最想逃离的 5 件具体事情。", "第 2 周：恢复基础节奏，睡眠、饮食、运动至少先稳住一个。", "第 3 周：用 0 成本方式做一次小测试，比如发一篇内容或问 10 个人需求。", "第 4 周：如果状态变好再做决定，如果状态更差，先停止加码。"],
+          advice: ["不建议在情绪最重的时候裸辞。", "先修复状态，再判断方向。", "你可以做副业测试，但不要做高投入动作。", "创业不是逃生门，它更像放大器，会放大你的状态和问题。"]
         }
       },
       questions: [
@@ -302,7 +384,7 @@
     function showResult() {
       const counts = { A: 0, B: 0, C: 0, D: 0 };
       answers.forEach(a => counts[a] += 1);
-      const winner = letters.sort((a,b) => counts[b] - counts[a])[0];
+      const winner = [...letters].sort((a,b) => counts[b] - counts[a])[0];
       const result = config.resultTypes[winner];
       const score = 72 + counts[winner] * 4 + (winner === "A" || winner === "C" ? 3 : 0);
       document.getElementById("quiz").style.display = "none";
@@ -311,6 +393,11 @@
       document.getElementById("resultTagline").textContent = result.tagline;
       document.getElementById("score").textContent = score;
       document.getElementById("summary").textContent = result.summary;
+      document.getElementById("quote").textContent = result.quote;
+      document.getElementById("motivation").textContent = result.motivation;
+      document.getElementById("path").textContent = result.path;
+      document.getElementById("risk").textContent = result.risk;
+      document.getElementById("actions").innerHTML = result.actions.map(item => `<div>${item}</div>`).join("");
       document.getElementById("advice").innerHTML = result.advice.map(item => `<div>${item}</div>`).join("");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
