@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>你是真的适合创业，还是只是厌倦上班？</title>
+  <style>
+    :root {
+      --bg: #101216;
+      --panel: #171b22;
+      --panel-2: #202631;
+      --text: #f4f1e8;
+      --muted: #9da3ad;
+      --gold: #d6ad48;
+      --line: rgba(214, 173, 72, 0.24);
+      --danger: #8f3131;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #20242c 0, #101216 52%, #0a0b0e 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+    }
+    .app {
+      width: min(520px, 100%);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 22px 18px 34px;
+    }
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+    .report-label { color: #737985; font-size: 11px; letter-spacing: 2px; }
+    .hero { padding: 34px 0 22px; text-align: center; }
+    .pill {
+      display: inline-flex;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(214, 173, 72, 0.12);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.18;
+      font-weight: 800;
+    }
+    .subtitle {
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+      max-width: 360px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(32, 38, 49, 0.96), rgba(21, 25, 33, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.26);
+      padding: 20px;
+      margin: 18px 0;
+    }
+    .progress {
+      height: 8px;
+      background: #252b35;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .bar { height: 100%; width: 0; background: linear-gradient(90deg, #b88b2b, #f3d37a); transition: width .25s ease; }
+    .q-num { color: var(--gold); font-size: 13px; font-weight: 800; margin-bottom: 8px; }
+    .question { font-size: 21px; font-weight: 800; line-height: 1.42; margin-bottom: 18px; }
+    .option {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 12px;
+      margin: 10px 0;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #11151b;
+      color: var(--text);
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.45;
+      cursor: pointer;
+    }
+    .option:hover, .option.selected {
+      border-color: rgba(214, 173, 72, 0.66);
+      background: rgba(214, 173, 72, 0.10);
+    }
+    .letter {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #252b35;
+      color: var(--gold);
+      font-weight: 800;
+    }
+    .actions { display: flex; gap: 12px; margin-top: 18px; }
+    button.primary, button.secondary {
+      border: none;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    button.primary { flex: 1; background: linear-gradient(135deg, #c99c37, #f0d27a); color: #14100a; }
+    button.secondary { background: #242a34; color: var(--text); }
+    .result { display: none; }
+    .score {
+      margin: 14px auto 8px;
+      color: var(--gold);
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .score-label { color: var(--muted); font-size: 13px; }
+    .summary {
+      margin-top: 18px;
+      background: #151a22;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      color: #e8e4d8;
+      line-height: 1.75;
+      text-align: left;
+      font-size: 15px;
+    }
+    .section-title {
+      margin: 24px 0 10px;
+      color: var(--gold);
+      font-size: 15px;
+      font-weight: 800;
+    }
+    .list {
+      display: grid;
+      gap: 10px;
+      color: #d5d9df;
+      text-align: left;
+      line-height: 1.55;
+      font-size: 14px;
+    }
+    .list div {
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.045);
+    }
+    .footer-note {
+      margin-top: 22px;
+      color: #7f8793;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="topline">
+      <span>你的专属创业适配报告</span>
+      <span class="report-label">CAREER · REPORT</span>
+    </div>
+
+    <section id="intro" class="hero">
+      <span class="pill">12 题完整版</span>
+      <h1>你是真的适合创业，<br>还是只是厌倦上班？</h1>
+      <p class="subtitle">按第一反应选择。这个测试会帮你区分：你是适合低成本试错，还是只是被上班消耗到想逃离。</p>
+      <div class="card">
+        <div class="section-title">测试完成后你将看到</div>
+        <div class="list">
+          <div>你的创业适配类型与核心倾向</div>
+          <div>你适合先做副业，还是直接创业</div>
+          <div>你当前最容易踩的风险点</div>
+          <div>未来 30 天更稳的行动建议</div>
+        </div>
+        <div class="actions">
+          <button class="primary" onclick="startTest()">开始测试</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="card" style="display:none">
+      <div class="progress"><div id="bar" class="bar"></div></div>
+      <div id="qnum" class="q-num"></div>
+      <div id="qtext" class="question"></div>
+      <div id="options"></div>
+      <div class="actions">
+        <button class="secondary" onclick="prevQuestion()">上一题</button>
+      </div>
+    </section>
+
+    <section id="result" class="result hero">
+      <span class="pill">你的类型</span>
+      <h1 id="resultName"></h1>
+      <p id="resultTagline" class="subtitle"></p>
+      <div class="score" id="score"></div>
+      <div class="score-label">创业适配指数</div>
+      <div class="summary" id="summary"></div>
+
+      <div class="section-title">你的关键提醒</div>
+      <div class="list" id="advice"></div>
+      <p class="footer-note">本测试为自我探索参考，不构成职业诊断、投资建议或创业承诺。请结合自身现实情况判断。</p>
+    </section>
+  </main>
+
+  <script>
+    const config = {
+      resultTypes: {
+        A: {
+          name: "机会捕手型",
+          tagline: "你不是不稳定，你只是太早看见了机会。",
+          summary: "你对机会、项目和自主性比较敏感，适合从低成本副业开始验证，不适合一上来重资产创业。",
+          advice: ["先做一个 7 天能完成的小项目。", "不要一开始囤货、租房或重投入。", "用成交和反馈判断方向，而不是只靠兴奋感。"]
+        },
+        B: {
+          name: "稳定修复型",
+          tagline: "你不是不想改变，你只是需要先恢复状态。",
+          summary: "你现在更需要恢复能量、积累现金流和建立节奏。与其马上创业，不如先用可控方式重新拿回主动权。",
+          advice: ["先保住现金流，再谈创业节奏。", "给自己设一个每周 3 小时的副业窗口。", "不要把疲惫误判成长期方向。"]
+        },
+        C: {
+          name: "资源突围型",
+          tagline: "你不是没能力，你只是被当前环境压住了。",
+          summary: "你适合做有资源整合、内容表达、项目协作属性的副业或轻创业，但要避免孤军奋战。",
+          advice: ["先盘点你能调动的人、技能和渠道。", "找一个能合作的小项目，不要闭门硬做。", "你适合用关系和内容放大价值。"]
+        },
+        D: {
+          name: "情绪逃离型",
+          tagline: "你不是适合创业，你可能只是太想逃离了。",
+          summary: "你当前的创业冲动更多来自消耗和焦虑。先修复状态、减少错误决策，比马上开始更重要。",
+          advice: ["不要在最累的时候做裸辞决定。", "先把睡眠、节奏和边界恢复回来。", "把想逃离的部分写清楚，再决定要不要创业。"]
+        }
+      },
+      questions: [
+        ["你最想逃离上班的原因是？", ["每天被安排，感觉自己像个工具人", "做了很多事，但看不到真正的回报", "明明有想法，却总被流程和领导压住", "不是讨厌工作，是已经累到不想面对"]],
+        ["如果突然有 3 个月自由时间，你第一反应是？", ["终于可以试试一直想做的项目", "先休息，把状态养回来再说", "研究怎么变现，看看别人怎么赚钱", "有点慌，不知道没人管我会不会废掉"]],
+        ["看到别人靠副业/创业赚钱，你心里最真实的声音是？", ["我也想试试，只是还没找到入口", "他能成，可能是资源比我好", "我不服，我觉得自己也不差", "羡慕，但一想到风险就退回去了"]],
+        ["你最害怕创业里的哪件事？", ["没有稳定收入，心里没底", "做了很久没人买，证明自己不行", "一个人扛所有事，没人兜底", "方向选错，浪费时间还更焦虑"]],
+        ["如果一年后你的收入和生活都没变化，你最不能接受的是？", ["还是每天重复消耗，没有一点主动权", "明明想改变，却一直停在原地", "眼看别人往上走，自己还在原地打转", "不是没赚到钱，而是越来越不相信自己"]],
+        ["如果要你今天开始做一个小副业，你最先卡在哪里？", ["我能想到方向，但不知道从哪一步开始", "我怕影响主业，心里总是不踏实", "我缺的是资源、人脉和第一个客户", "我一想到要持续做，就已经开始累了"]],
+        ["你更相信哪一种赚钱方式？", ["先试小项目，跑通了再加码", "稳定积累，别轻易打乱基本盘", "找到合适的人和资源，速度会快很多", "我现在只想先摆脱被工作压着的感觉"]],
+        ["如果一个项目连续 30 天没结果，你会怎么想？", ["复盘哪里错了，再换方法试一次", "先停下来，不想继续亏时间和精力", "看看是不是没有找到对的人或渠道", "我会怀疑自己是不是根本不适合"]],
+        ["你最不适合哪种创业状态？", ["想法很多，但一直没人帮我落地", "收入忽高忽低，每天都没安全感", "所有事情都要我一个人从零扛", "没有边界，反而比上班更累"]],
+        ["如果有人劝你别折腾，你最真实的反应是？", ["我会听，但心里还是想试一次", "我会重新算风险，不想让自己太被动", "我想找到能一起做的人，而不是一个人硬撑", "我会更纠结，怕自己只是冲动"]],
+        ["你觉得自己最可能靠什么突围？", ["行动快，愿意不断试错", "稳定、细致、能长期坚持", "会观察人和机会，能整合资源", "先脱离消耗，重新找回状态"]],
+        ["你现在最需要的不是答案，而是？", ["一个低成本开始的入口", "一个不会把生活打翻的计划", "一套把资源变成结果的方法", "先确认自己不是在逃避"]]
+      ]
+    };
+    const letters = ["A", "B", "C", "D"];
+    let index = 0;
+    const answers = [];
+    function startTest() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("quiz").style.display = "block";
+      renderQuestion();
+    }
+    function renderQuestion() {
+      const q = config.questions[index];
+      document.getElementById("bar").style.width = ((index) / config.questions.length * 100) + "%";
+      document.getElementById("qnum").textContent = `第 ${index + 1} / ${config.questions.length} 题`;
+      document.getElementById("qtext").textContent = q[0];
+      document.getElementById("options").innerHTML = q[1].map((text, i) => {
+        const letter = letters[i];
+        const selected = answers[index] === letter ? " selected" : "";
+        return `<button class="option${selected}" onclick="choose('${letter}')"><span class="letter">${letter}</span><span>${text}</span></button>`;
+      }).join("");
+    }
+    function choose(letter) {
+      answers[index] = letter;
+      if (index < config.questions.length - 1) {
+        index += 1;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+    function prevQuestion() {
+      if (index > 0) {
+        index -= 1;
+        renderQuestion();
+      }
+    }
+    function showResult() {
+      const counts = { A: 0, B: 0, C: 0, D: 0 };
+      answers.forEach(a => counts[a] += 1);
+      const winner = letters.sort((a,b) => counts[b] - counts[a])[0];
+      const result = config.resultTypes[winner];
+      const score = 72 + counts[winner] * 4 + (winner === "A" || winner === "C" ? 3 : 0);
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("resultName").textContent = result.name;
+      document.getElementById("resultTagline").textContent = result.tagline;
+      document.getElementById("score").textContent = score;
+      document.getElementById("summary").textContent = result.summary;
+      document.getElementById("advice").innerHTML = result.advice.map(item => `<div>${item}</div>`).join("");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
